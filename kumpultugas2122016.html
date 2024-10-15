@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas ProgWeb Andrew 2122016</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Tugas ProgWeb Andrew 2122016</h1>
+    </header>
+
+    <section>
+        <h2>Kalkulator Sederhana</h2>
+        <form>
+            <label for="bil1">Bilangan 1:</label>
+            <input type="text" id="bil1" size="10"><br><br>
+
+            <label for="bil2">Bilangan 2:</label>
+            <input type="text" id="bil2" size="10"><br><br>
+
+            <select id="operasi">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select><br><br>
+
+            <input type="button" value="Hitung" onclick="hitungKalkulator()"><br><br>
+
+            <label for="hasilKalkulator">Hasil:</label>
+            <input type="text" id="hasilKalkulator" size="20" readonly><br><br>
+        </form>
+    </section>
+
+    <section>
+        <h2>Cek Ganjil Genap</h2>
+        <form>
+            <label for="bilangan">Masukkan Bilangan:</label>
+            <input type="text" id="bilangan" size="10">
+            <input type="button" value="CEK" onclick="cekGanjilGenap()"><br><br>
+
+            <label for="hasilGanjilGenap">Bilangan Ganjil/Genap?:</label>
+            <input type="text" id="hasilGanjilGenap" size="20" readonly><br><br>
+        </form>
+    </section>
+
+    <section>
+        <h2>Cek Lulus/Tidak</h2>
+        <form>
+            <label for="nilai">Masukkan Nilai:</label>
+            <input type="text" id="nilai" size="10">
+            <input type="button" value="CEK" onclick="cekKelulusan()"><br><br>
+
+            <label for="hasilKelulusan">Lulus/Tidak?:</label>
+            <input type="text" id="hasilKelulusan" size="20" readonly><br><br>
+        </form>
+    </section>
+
+    <script>
+        function hitungKalkulator() {
+            var bil1 = parseFloat(document.getElementById('bil1').value);
+            var bil2 = parseFloat(document.getElementById('bil2').value);
+            var operasi = document.getElementById('operasi').value;
+            var hasil = 0;
+
+            if (operasi === "+") {
+                hasil = bil1 + bil2;
+            } else if (operasi === "-") {
+                hasil = bil1 - bil2;
+            } else if (operasi === "*") {
+                hasil = bil1 * bil2;
+            } else if (operasi === "/") {
+                if (bil2 !== 0) {
+                    hasil = bil1 / bil2;
+                } else {
+                    alert("Pembagi tidak boleh 0");
+                    return;
+                }
+            }
+            document.getElementById('hasilKalkulator').value = hasil;
+        }
+
+        function cekGanjilGenap() {
+            var bilangan = parseInt(document.getElementById('bilangan').value);
+            var hasil = "";
+
+            if (isNaN(bilangan)) {
+                hasil = "Masukkan angka yang valid!";
+            } else if (bilangan % 2 === 0) {
+                hasil = "Bilangan Genap";
+            } else {
+                hasil = "Bilangan Ganjil";
+            }
+
+            document.getElementById('hasilGanjilGenap').value = hasil;
+        }
+
+        function cekKelulusan() {
+            var nilai = parseInt(document.getElementById('nilai').value);
+            var hasil = "";
+
+            if (isNaN(nilai)) {
+                hasil = "Masukkan nilai yang valid!";
+            } else if (nilai >= 60) {
+                hasil = "Lulus";
+            } else {
+                hasil = "Tidak Lulus";
+            }
+
+            document.getElementById('hasilKelulusan').value = hasil;
+        }
+    </script>
+</body>
+</html>
